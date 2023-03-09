@@ -20,8 +20,8 @@ class General(object):
         """Copy the contents of one object to another existing object."""
         if type(self) == type(other):
             for atrribute in vars(other):
-                if not attribute.endswith('status'):
-                    setattr(self, atrribute, copy.deepcopy(getattr(other, atrribute)))
+                if not atrribute.endswith('status'):
+                    setattr(self, atrribute, self.deepcopy(getattr(other, atrribute)))
             self._copy_status = self.COPY_OK
         else:
             self._copy_status = self.COPY_ATTR_ERR
@@ -30,7 +30,7 @@ class General(object):
     @final
     def clone(self):
         """Create a new object and deeply copy the contents of the original object."""
-        return copy.deepcopy(self)
+        return self.deepcopy(self)
 
     @final
     def __eq__(self, other: _T) -> bool:
@@ -68,10 +68,9 @@ class General(object):
         return isinstance(self, cls)
 
     def get_real_class(self):
-         """Return the actual class of the object."""
+        """Return the actual class of the object."""
         return type(self)
 
 
 class Any(General):
     pass
-
