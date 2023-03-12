@@ -1,6 +1,5 @@
 
-from task_9.solution import Any
-
+from task_9.task_9_solution import Any
 
 void = None
 Void = type(None)
